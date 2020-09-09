@@ -1,18 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <script src="main.js"></script>
+    <script defer src="main.js"></script>
     <link rel="stylesheet" href="style.css"></link>
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finish the Tune</title>
+    <title>GuessTheTune</title>
 </head>
 <body>
-    <div class = "title"><h1>Finish the Tune</h1></div>
-    <div class="button1"><button>Start </button></div>
-    <div><h3>Score:<span id="score">0</span></h3></div>
+    <div><a href=index.html><img class = "title" src="img/gtt2.png" alt="GuessTheTune"></div></a>
+    <div class="homeBox" id="homeBox">
+        <p class="russoOne">Choose your genre:</p>
+        <button id="popBtn" class="btn">Pop</button>
+        <button id="rapBtn"class="btn">Rap</button>
+        <button class="btn" id="italianBtn">Italian</button>
+        <button class="btn" id="rockBtn">Rock</button>
+    </div>
+
+    <div id="question-container"class="hide">
+        <div class="russoOne" id="question">
+            <p>Question</p>
+        </div>
+        <div id="answer-buttons" class="btn-grid">
+            <button class="btn">Answer 1</button>
+            <button class="btn">Answer 2</button>
+            <button class="btn">Answer 3</button>
+            <button class="btn">Answer 4</button>
+        </div>
+        <div class="russoOne">
+            Score:<p id='score'>0</p>
+        </div>
+        <div class="russoOne">
+            Time:<p id='timer'>0</p>
+        </div>
+
+    </div>
 
     
 </body>
+
 </html>
