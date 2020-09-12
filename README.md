@@ -1,3 +1,4 @@
 # GuessTheTune
 
-A little game I made
+A song trivia game made with JavaScript.
+
