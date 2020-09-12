@@ -1,41 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico"/>
     <script defer src="main.js"></script>
     <link rel="stylesheet" href="style.css"></link>
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GuessTheTune</title>
 </head>
 <body>
+
     <div><a href=index.html><img class = "title" src="img/gtt2.png" alt="GuessTheTune"></div></a>
-    <div class="homeBox" id="homeBox">
-        <p class="russoOne">Choose your genre:</p>
-        <button id="popBtn" class="btn">Pop</button>
-        <button id="rapBtn"class="btn">Rap</button>
-        <button class="btn" id="italianBtn">Italian</button>
-        <button class="btn" id="rockBtn">Rock</button>
-    </div>
+    <div class="container">
+        <div class="homeBox" id="homeBox">
+            <h1>Choose your genre :</h1>
+            <div class ="btn-grid">
+                <button id="popBtn" class="btn">Pop</button>
+                <button id="rapBtn"class="btn">Hip-Hop / Rap</button>
+                <button id="italianBtn" class="btn">Italian</button>
+                <button id="rockBtn" class="btn">Rock</button>
+            </div>
+        </div>
+    
+        <div id="question-container" class="hide homeBox">
+            <h1 class="poppins">Guess The Name Of The Tune</h1>
+            <div id="answer-buttons" class="btn-grid">
+                <button id='answer1' class="btn">Answer 1</button>
+                <button id='answer2' class="btn">Answer 2</button>
+                <button id='answer3' class="btn">Answer 3</button>
+                <button id='answer4' class="btn">Answer 4</button>
+            </div>
 
-    <div id="question-container"class="hide">
-        <div class="russoOne" id="question">
-            <p>Question</p>
-        </div>
-        <div id="answer-buttons" class="btn-grid">
-            <button class="btn">Answer 1</button>
-            <button class="btn">Answer 2</button>
-            <button class="btn">Answer 3</button>
-            <button class="btn">Answer 4</button>
-        </div>
-        <div class="russoOne">
-            Score:<p id='score'>0</p>
-        </div>
-        <div class="russoOne">
-            Time:<p id='timer'>0</p>
+            <div class="poppins">
+                Score : <p class="inline" id='score'>0</p> 
+                Time : <p class="inline" id='timer'>15</p>
+            </div>
+                <button id ='nextBtn'class='btn next-btn'>Next</button>
         </div>
 
+        <div id='resetBox' class="hide homeBox">
+            <p>Congratulations !</p>
+            <div >Your score is : <h2 class="inline" id="totalScore">0</h2><h2 class="inline">/10</h2></div>
+            <a href="index.html"><button class="btn">Restart</button></a>
+        </div>
     </div>
 
     
