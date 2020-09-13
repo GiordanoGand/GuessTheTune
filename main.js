@@ -18,7 +18,9 @@ let clicked = false
 let currentQuestionIndex = 0
 let scorevalue = 0
 let numberQuestion = 0
-var seconds = document.getElementById("timer").textContent;
+var selectedDifficulty = document.getElementById('difficulty')
+var difficulty = selectedDifficulty.options[selectedDifficulty.selectedIndex].value
+var seconds = difficulty
 var currentGenre 
 var countdown
 
@@ -43,6 +45,7 @@ rockBtn.addEventListener('click',() => {
 function startGame(){
   homeBox.classList.add('hide')
   questioncontainer.classList.remove('hide')
+  document.getElementById('timer').textContent = seconds
   timer()
   shuffle(currentGenre)
   nextQuestion(currentGenre)
@@ -55,7 +58,8 @@ function startGame(){
 
 function nextBtn(){
     clearInterval(countdown)
-    seconds = 16
+    seconds = difficulty 
+    seconds++
     timer()
     pauseAudio(currentGenre[currentQuestionIndex].song)
     clicked = false
@@ -102,7 +106,7 @@ function showQuestion(question){
 }
 
 function endGame(){
-  if (numberQuestion  > 10){
+  if (numberQuestion  > 20){
     pauseAudio(currentGenre[currentQuestionIndex].song)
     questioncontainer.classList.add('hide')
     resetContainer.classList.remove('hide')
@@ -116,11 +120,18 @@ function timer(){
     document.getElementById("timer").textContent = seconds;
     if (seconds <= 0) clearInterval(countdown)
     if (seconds == 0){
-      seconds = 16
+      seconds = difficulty
+      seconds++
       timer()
       nextBtn()
     }
 }, 1000)
+}
+
+function selectedDifficultyChange(){
+  selectedDifficulty = document.getElementById('difficulty')
+  difficulty = selectedDifficulty.options[selectedDifficulty.selectedIndex].value
+  seconds = difficulty
 }
 
 function pauseAudio(audio){
@@ -237,12 +248,291 @@ function shuffle(array) {
             ]
     },
     {
-      song: new Audio('songs/pop/seconda.strofa.perfect.mp3'),
+      song: new Audio('songs/pop/seconda.strofa.perfect-[AudioTrimmer.com].mp3'),
       answers: [
                 { text:'Perfect', correct:true },
                 { text:"Beautiful", correct:false },
                 { text:'Thinking out loud', correct:false },
                 { text:'I found a girl', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/prima.strofa.girls.like.you.mp3'),
+      answers: [
+                { text:'My girl', correct:false },
+                { text:"L-O-V-E", correct:false },
+                { text:"Girls like you", correct:true },
+                { text:'Guy like me', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/prima.strofa.radioactive.mp3'),
+      answers: [
+                { text:'On top of the world', correct:false },
+                { text:"In my bones", correct:false },
+                { text:"New age", correct:false },
+                { text:'Radioactive', correct:true }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/prima.strofa.roar.mp3'),
+      answers: [
+                { text:'Roar', correct:true },
+                { text:"", correct:false },
+                { text:"", correct:false },
+                { text:'', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/prima.strofa.uptown.funk.mp3'),
+      answers: [
+                { text:'The funk', correct:false },
+                { text:"Grenade", correct:false },
+                { text:"Uptown funk", correct:true },
+                { text:'Saturday night', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/prima.strofa.watermelon.sugar.mp3'),
+      answers: [
+                { text:'Sugar', correct:false },
+                { text:"The taste", correct:false },
+                { text:"Summer feeling", correct:false },
+                { text:'Watermelon sugar', correct:true }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/prima.strofa.what.makes.you.beautiful.mp3'),
+      answers: [
+                { text:'What makes you beautiful', correct:true},
+                { text:"Baby", correct:false },
+                { text:"My world", correct:false },
+                { text:'You light me up', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/ritornello.dark.horse.mp3'),
+      answers: [
+                { text:'Dark Horse', correct:true },
+                { text:"Magic", correct:false },
+                { text:"Are you ready for it", correct:false },
+                { text:'Storm', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/ritornello.dont.start.now.mp3'),
+      answers: [
+                { text:'Not now', correct:false },
+                { text:"Don't start now", correct:true },
+                { text:"Love is on it's way", correct:false },
+                { text:'New Rules', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/ritornello.head&heart.mp3'),
+      answers: [
+                { text:'Love it', correct:false },
+                { text:"Head and heart", correct:true },
+                { text:"I hate you", correct:false },
+                { text:'The way I feel', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/ritornello.love.me.like.you.do.mp3'),
+      answers: [
+                { text:'Touch me', correct:false },
+                { text:"Love me like you do", correct:true },
+                { text:"Love me", correct:false },
+                { text:'Like you do', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/ritornello.moves.like.jagger.mp3'),
+      answers: [
+                { text:'She said', correct:false },
+                { text:"Moves", correct:false },
+                { text:"The king", correct:false },
+                { text:'Moves like jagger', correct:true}
+            ]
+    },
+    {
+      song: new Audio('songs/pop/ritornello.one.kiss.mp3'),
+      answers: [
+                { text:'One kiss', correct:true },
+                { text:"Don't show up", correct:false },
+                { text:"Don't start now", correct:false },
+                { text:'Rules', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/ritornello.price.tag.mp3'),
+      answers: [
+                { text:'Money money', correct:false },
+                { text:"Price tag", correct:true },
+                { text:"It's not about the money", correct:false },
+                { text:'Price', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/ritornello.see.you.again.mp3'),
+      answers: [
+                { text:'All about it', correct:false },
+                { text:"I'll tell you", correct:false },
+                { text:"All about that bass", correct:false },
+                { text:'See you again', correct:true }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/ritornello.stay.with.me.mp3'),
+      answers: [
+                { text:'Stay with me', correct: true },
+                { text:"All I need", correct:false },
+                { text:"All of me", correct:false },
+                { text:'You are all I need', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/ritornello.stressed.out.mp3'),
+      answers: [
+                { text:'Play pretend', correct:false },
+                { text:"Blury face", correct:false },
+                { text:"Make money", correct:false },
+                { text:'Stressed out', correct:true }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/ritornello.thrift.shop.mp3'),
+      answers: [
+                { text:'Thrift shop', correct:true },
+                { text:"Pop some tags", correct:false },
+                { text:"20 Dollars", correct:false },
+                { text:'Wings', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/seconda.strofa,diamonds.mp3'),
+      answers: [
+                { text:'Diamonds', correct:true},
+                { text:"Bright", correct:false },
+                { text:"Shine", correct:false },
+                { text:'Diamonds in the sky', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/seconda.strofa.cant.stop.the.feeling.mp3'),
+      answers: [
+                { text:"Can't stop", correct:false },
+                { text:"Dance", correct:false },
+                { text:"Can't stop the feeling", correct:true},
+                { text:'The feeling', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/seconda.strofa.faded.mp3'),
+      answers: [
+                { text:'Faded', correct:true },
+                { text:"Lost", correct:false },
+                { text:"Run away", correct:false },
+                { text:'Take it', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/seconda.strofa.happy.mp3'),
+      answers: [
+                { text:'Beautiful day', correct:false },
+                { text:"Smile", correct:false },
+                { text:"Because I'm happy", correct:false },
+                { text:'Happy', correct:true }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/seconda.strofa.hello.mp3'),
+      answers: [
+                { text:'Happy', correct:false },
+                { text:"Hello", correct:true },
+                { text:"It's me", correct:false },
+                { text:'Rolling in the deep', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/seconda.strofa.last.friday.night.mp3'),
+      answers: [
+                { text:'This friday night', correct:false },
+                { text:"Friday party", correct:false },
+                { text:"Last night", correct:false },
+                { text:'Last friday night', correct:true }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/seconda.strofa.new.rules.mp3'),
+      answers: [
+                { text:'One', correct:false },
+                { text:"Walk away", correct:false },
+                { text:"Don't start now", correct:false },
+                { text:'New rules', correct:true }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/seconda.strofa.rain.on.me.mp3'),
+      answers: [
+                { text:'Raine on me', correct:true },
+                { text:"All of me", correct:false },
+                { text:"Love and pain", correct:false },
+                { text:'Rain', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/seconda.strofa.rolling.in.the.deep.mp3'),
+      answers: [
+                { text:'You put my heart in pain', correct:false },
+                { text:"Hello", correct:false },
+                { text:"Rolling in the deep", correct:true },
+                { text:"There's a fire", correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/seconda.strofa.senorita.mp3'),
+      answers: [
+                { text:'I love it when you call me', correct:false },
+                { text:"Senorita", correct:true },
+                { text:"Meet ya", correct:false },
+                { text:'Every touch', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/seconda.strofa.starboy.mp3'),
+      answers: [
+                { text:'The boy', correct:false },
+                { text:"Starboy", correct:true },
+                { text:"Call me", correct:false },
+                { text:'Look what you did', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/seconda.strofa.wake.me.up.mp3'),
+      answers: [
+                { text:'Wake me up', correct:true},
+                { text:"When it's all over", correct:false },
+                { text:"Older", correct:false },
+                { text:'Wiser', correct:false }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/seconda.strofa.we.found.love.mp3'),
+      answers: [
+                { text:'Wings', correct:false },
+                { text:"Lonely place", correct:false },
+                { text:"We've loved and cry", correct:false },
+                { text:'We found love', correct:true }
+            ]
+    },
+    {
+      song: new Audio('songs/pop/seconda.strofa.work.mp3'),
+      answers: [
+                { text:'Work', correct:true },
+                { text:"See me", correct:false },
+                { text:"Work it", correct:false },
+                { text:'Eyes on me', correct:false }
             ]
     }
   ]
@@ -354,6 +644,51 @@ function shuffle(array) {
             { text:"Don't stop now", correct:false },
             { text:'The Start', correct:false }
         ]
+  },
+  {
+    song: new Audio('songs/rap/ritornello.mood.swings.mp3'),
+    answers: [
+              { text:'Mood swings', correct:true },
+              { text:"Mood", correct:false },
+              { text:"Lover", correct:false },
+              { text:'Shorty a little baddy', correct:false }
+          ]
+  },
+  {
+    song: new Audio('songs/rap/ritornello.toosie.slide.mp3'),
+    answers: [
+              { text:'Left foot slide', correct:false },
+              { text:"Toosie slide", correct:true },
+              { text:"God's plan", correct:false },
+              { text:'Laugh now cry later', correct:false }
+          ]
+  },
+  {
+    song: new Audio('songs/rap/seconda.strofa.mood.mp3'),
+    answers: [
+              { text:'Mood swings', correct:false },
+              { text:"Always", correct:false },
+              { text:"Play it cool", correct:false },
+              { text:'Mood', correct:true}
+          ]
+  },
+  {
+    song: new Audio('songs/rap/seconda.strofa.stressed.out.mp3'),
+    answers: [
+              { text:'Stressed out', correct:true },
+              { text:"Play it cool", correct:false },
+              { text:"Play pretend", correct:false },
+              { text:'Make money', correct:false }
+          ]
+  },
+  {
+    song: new Audio('songs/rap/seconda.strofa.thrift.shop-[AudioTrimmer.com].mp3'),
+    answers: [
+              { text:'20 Dollars ', correct:false },
+              { text:"Thrift shop", correct:true},
+              { text:"Pop some tags", correct:false },
+              { text:'Wings', correct:false }
+          ]
   }]
   
   const questionsRock =[{

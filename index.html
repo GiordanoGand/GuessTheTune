@@ -22,6 +22,15 @@
                 <button id="italianBtn" class="btn">Italian</button>
                 <button id="rockBtn" class="btn">Rock</button>
             </div>
+            <div>
+                <h2>Select Your Difficulty</h2>
+                <select class="btn" id='difficulty' onchange="selectedDifficultyChange()">
+                    <option value="17">Easy</option>
+                    <option value="15">Medium</option>
+                    <option value="10">Difficult</option>
+                    <option value="5">Impossible</option>
+                </select>
+            </div>
         </div>
     
         <div id="question-container" class="hide homeBox">
@@ -35,14 +44,14 @@
 
             <div class="poppins">
                 Score : <p class="inline" id='score'>0</p> 
-                Time : <p class="inline" id='timer'>15</p>
+                Time : <p class="inline" id='timer'>0</p>
             </div>
                 <button id ='nextBtn'class='btn next-btn'>Next</button>
         </div>
 
         <div id='resetBox' class="hide homeBox">
             <p>Congratulations !</p>
-            <div >Your score is : <h2 class="inline" id="totalScore">0</h2><h2 class="inline">/10</h2></div>
+            <div >Your score is : <h2 class="inline" id="totalScore">0</h2><h2 class="inline">/20</h2></div>
             <a href="index.html"><button class="btn">Restart</button></a>
         </div>
     </div>
