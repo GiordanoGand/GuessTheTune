@@ -13,13 +13,17 @@ const answer4= document.getElementById('answer4')
 const score = document.getElementById('score')
 const nextButton = document.getElementById('nextBtn')
 const totalScore = document.getElementById('totalScore')
+const numberQuestions = document.getElementById('numberQuestions')
 
+let clickedCorrect 
+let selectedNumeberQuestions = 10
 let clicked = false
 let currentQuestionIndex = 0
 let scorevalue = 0
 let numberQuestion = 0
 var selectedDifficulty = document.getElementById('difficulty')
 var difficulty = selectedDifficulty.options[selectedDifficulty.selectedIndex].value
+var correctAnswer
 var seconds = difficulty
 var currentGenre 
 var countdown
@@ -61,6 +65,7 @@ function nextBtn(){
     seconds = difficulty 
     seconds++
     timer()
+    clearStatusClass(clickedCorrect)
     pauseAudio(currentGenre[currentQuestionIndex].song)
     clicked = false
     currentQuestionIndex++
@@ -71,6 +76,8 @@ function clickQuestion(answerNumber,genre,answerIndex){
   answerNumber.addEventListener('click',() => {
     if(genre[currentQuestionIndex].answers[answerIndex].correct){
       document.body.classList.add('correct')
+      //answerNumber.classList.add('correct')
+      clickedCorrect = answerNumber
       if (!clicked){
         scorevalue++
         score.innerText = scorevalue
@@ -92,7 +99,7 @@ function nextQuestion(genre){
   numberQuestion++
   endGame()
   clearStatusClass(document.body)
-  if (numberQuestion <= 10){
+  if (numberQuestion <= selectedNumeberQuestions){
     showQuestion(genre[currentQuestionIndex])
   }
 }
@@ -106,11 +113,12 @@ function showQuestion(question){
 }
 
 function endGame(){
-  if (numberQuestion  > 20){
+  if (numberQuestion  > selectedNumeberQuestions){
     pauseAudio(currentGenre[currentQuestionIndex].song)
     questioncontainer.classList.add('hide')
     resetContainer.classList.remove('hide')
     totalScore.innerText = scorevalue
+    numberQuestions.innerText = selectedNumeberQuestions
   }
 }
 
@@ -146,6 +154,7 @@ function clearStatusClass(element) {
 function shuffle(array) {
     array.sort(() => Math.random() - 0.5);
   }
+
 
   const questionsPop =  [
     {
@@ -278,9 +287,9 @@ function shuffle(array) {
       song: new Audio('songs/pop/prima.strofa.roar.mp3'),
       answers: [
                 { text:'Roar', correct:true },
-                { text:"", correct:false },
-                { text:"", correct:false },
-                { text:'', correct:false }
+                { text:"Eye of the tiger", correct:false },
+                { text:"Fire", correct:false },
+                { text:'Lion in me', correct:false }
             ]
     },
     {
@@ -475,7 +484,7 @@ function shuffle(array) {
     {
       song: new Audio('songs/pop/seconda.strofa.rain.on.me.mp3'),
       answers: [
-                { text:'Raine on me', correct:true },
+                { text:'Rain on me', correct:true },
                 { text:"All of me", correct:false },
                 { text:"Love and pain", correct:false },
                 { text:'Rain', correct:false }
@@ -819,7 +828,7 @@ function shuffle(array) {
       ]
     },
     {
-      song: new Audio('songs/italian/prima.strofa.bimbi.per.strada.mp3'),
+      song: new Audio('songs/italian/seconda.strofa.bimbi.per.strada.mp3'),
       answers: [
         {text:"Non sopporto te", correct:false},
         {text:"Ricordi", correct:false},
