@@ -65,7 +65,7 @@ function nextBtn(){
     seconds = difficulty 
     seconds++
     timer()
-    clearStatusClass(clickedCorrect)
+    //clearStatusClass(clickedCorrect)
     pauseAudio(currentGenre[currentQuestionIndex].song)
     clicked = false
     currentQuestionIndex++
