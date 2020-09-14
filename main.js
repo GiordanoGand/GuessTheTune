@@ -17,7 +17,8 @@ const numberQuestions = document.getElementById('numberQuestions')
 
 let clickedWrong
 let clickedCorrect 
-let selectedNumeberQuestions = 10
+let clickedWr = false
+let selectedNumeberQuestions = 20
 let clicked = false
 let currentQuestionIndex = 0
 let scorevalue = 0
@@ -71,7 +72,7 @@ function nextBtn(){
     if (clickedCorrectAnswer){
       clearStatusClass(clickedCorrect)
     }
-    else {
+    else if(clickedWr) {
       clearStatusClass(clickedWrongCorrect)
       clearStatusClass(clickedWrong)
     }
@@ -101,9 +102,10 @@ function clickQuestion(answerNumber,genre,answerIndex){
         answerNumber.classList.add('wrong')
         document.body.classList.add('wrong')
         clicked = true
+        clickedWr = true
         clickedCorrectAnswer = false
         clickedWrongAnswer = true
-        clickedWrong=answerNumber
+        clickedWrong = answerNumber
         //clearInterval(countdown)
     }
   })
@@ -1003,9 +1005,9 @@ function clearCorrectAnswer(answerNmbr){
       song: new Audio('songs/italian/ALFA - SUL PI BELLO Prod Yanomi-[AudioTrimmer.com].mp3'),
       answers: [
         {text:"Sul Più Bello", correct:true},
-        {text:"c'est la vie", correct:false},
-        {text:"evergreen", correct:false},
-        {text:"film", correct:false}
+        {text:"C'est la vie", correct:false},
+        {text:"Evergreen", correct:false},
+        {text:"Film", correct:false}
       ]
     },
     {
