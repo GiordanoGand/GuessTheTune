@@ -18,7 +18,7 @@ const numberQuestions = document.getElementById('numberQuestions')
 let clickedWrong
 let clickedCorrect 
 let clickedWr = false
-let selectedNumeberQuestions = 20
+let selectedNumeberQuestions = 10
 let clicked = false
 let currentQuestionIndex = 0
 let scorevalue = 0
@@ -51,10 +51,10 @@ rockBtn.addEventListener('click',() => {
 
 
 function startGame(){
-  homeBox.classList.add('hide')
-  questioncontainer.classList.remove('hide')
   document.getElementById('timer').textContent = seconds
   timer()
+  homeBox.classList.add('hide')
+  questioncontainer.classList.remove('hide')
   shuffle(currentGenre)
   nextQuestion(currentGenre)
   clickQuestion(answer1,currentGenre,0)
