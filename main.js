@@ -15,6 +15,7 @@ const nextButton = document.getElementById('nextBtn')
 const totalScore = document.getElementById('totalScore')
 const numberQuestions = document.getElementById('numberQuestions')
 
+let clickedWrong
 let clickedCorrect 
 let selectedNumeberQuestions = 10
 let clicked = false
@@ -25,6 +26,8 @@ var selectedDifficulty = document.getElementById('difficulty')
 var difficulty = selectedDifficulty.options[selectedDifficulty.selectedIndex].value
 var correctAnswer
 var seconds = difficulty
+var clickedCorrectAnswer
+var clickedWrongAnswer = false
 var currentGenre 
 var countdown
 
@@ -65,9 +68,16 @@ function nextBtn(){
     seconds = difficulty 
     seconds++
     timer()
-    //clearStatusClass(clickedCorrect)
+    if (clickedCorrectAnswer){
+      clearStatusClass(clickedCorrect)
+    }
+    else {
+      clearStatusClass(clickedWrongCorrect)
+      clearStatusClass(clickedWrong)
+    }
     pauseAudio(currentGenre[currentQuestionIndex].song)
     clicked = false
+    clickedWrongAnswer = false
     currentQuestionIndex++
     nextQuestion(currentGenre)
 }
@@ -76,21 +86,25 @@ function clickQuestion(answerNumber,genre,answerIndex){
   answerNumber.addEventListener('click',() => {
     if(genre[currentQuestionIndex].answers[answerIndex].correct){
       document.body.classList.add('correct')
-      //answerNumber.classList.add('correct')
-      clickedCorrect = answerNumber
+      answerNumber.classList.add('correct')
       if (!clicked){
+        clickedCorrect = answerNumber
         scorevalue++
         score.innerText = scorevalue
         clicked = true
+        clickedCorrectAnswer = true
         //clearInterval(countdown)
       }
     }
-    else{
-      if (document.body.classList != 'correct'){
+    else if(!clickedWrongAnswer){
+        getCorrectAnswer()
+        answerNumber.classList.add('wrong')
         document.body.classList.add('wrong')
         clicked = true
+        clickedCorrectAnswer = false
+        clickedWrongAnswer = true
+        clickedWrong=answerNumber
         //clearInterval(countdown)
-      }
     }
   })
 }
@@ -155,8 +169,58 @@ function shuffle(array) {
     array.sort(() => Math.random() - 0.5);
   }
 
+function getCorrectAnswer(){
+    if(currentGenre[currentQuestionIndex].answers[0].correct){
+      answer1.classList.add('correct')
+      clickedWrongCorrect = answer1
+    }
+    else if(currentGenre[currentQuestionIndex].answers[1].correct){
+      answer2.classList.add('correct')
+      clickedWrongCorrect = answer2
+    }
+    else if(currentGenre[currentQuestionIndex].answers[2].correct){
+      answer3.classList.add('correct')
+      clickedWrongCorrect = answer3
+    }
+    else if(currentGenre[currentQuestionIndex].answers[3].correct){
+      answer4.classList.add('correct')
+      clickedWrongCorrect = answer4
+    }
+}
 
-  const questionsPop =  [
+function clearCorrectAnswer(answerNmbr){
+  if(answerNmbr.classList = 'correct'){
+    answerNmbr.classList.remove('correct')
+  }
+}
+
+  const questionsPop =  [{
+    song: new Audio('songs/pop/ritornello.paradise.mp3'),
+    answers: [
+              { text:'Paradise', correct:true },
+              { text:'Sky full of stars', correct:false },
+              { text:'Charlie Brown', correct:false },
+              { text:'She flies', correct:false }
+          ]
+  },
+  {
+  song: new Audio('songs/pop/ritornello.something.just.like.this.mp3'),
+  answers: [
+            { text:'I want something', correct:false },
+            { text:'Someone to kiss', correct:false },
+            { text:'Adventure of a lifitime', correct:false },
+            { text:'Something just like this', correct:true }
+        ]
+  },
+  {
+  song: new Audio('songs/pop/ritornello.treat.you.better.mp3'),
+  answers: [
+            { text:"He can't", correct:false },
+            { text:'Treat you better', correct:true },
+            { text:'Stiches', correct:false },
+            { text:'Gentlemen', correct:false }
+        ]
+  },
     {
       song:new Audio('songs/pop/ritornello.7.rings.mp3'),
       answers: [
@@ -224,8 +288,8 @@ function shuffle(array) {
       song: new Audio('songs/pop/seconda.strofs.before.you.go.mp3'),
       answers: [
                 { text:'Something I said', correct:false },
-                { text:'Sad', correct:false },
-                { text:"Don't run", correct:false },
+                { text:'The right time', correct:false },
+                { text:"Never", correct:false },
                 { text:'Before you go', correct:true }
             ]
     },
@@ -546,7 +610,7 @@ function shuffle(array) {
     }
   ]
   
-  const questionsRap= [    {
+  const questionsRap= [{
     song: new Audio('songs/rap/ritornello.old.town.road.mp3'),
     answers: [
               { text:"I'm not afraid", correct:false},
@@ -746,12 +810,12 @@ function shuffle(array) {
         ]
   },
   {
-  song: new Audio('songs/rock/ritornello.paradise.mp3'),
+  song: new Audio('songs/rock/prima.strofa.another.brick.in.the.wall.mp3'),
   answers: [
-            { text:'Paradise', correct:true },
-            { text:'Sky full of stars', correct:false },
-            { text:'Charlie Brown', correct:false },
-            { text:'She flies', correct:false }
+            { text:'Another brick in the wall', correct:true },
+            { text:'Leave us alone', correct:false },
+            { text:'Teacher', correct:false },
+            { text:'Another one bites the dust', correct:false }
         ]
   },
   {
@@ -764,21 +828,21 @@ function shuffle(array) {
         ]
   },
   {
-  song: new Audio('songs/rock/ritornello.something.just.like.this.mp3'),
+  song: new Audio('songs/rock/ritornello.highway.to.hell.mp3'),
   answers: [
-            { text:'I want something', correct:false },
-            { text:'Someone to kiss', correct:false },
-            { text:'Adventure of a lifitime', correct:false },
-            { text:'Something just like this', correct:true }
+            { text:'Back in black', correct:false },
+            { text:'The Highway', correct:false },
+            { text:'Radioactive', correct:false },
+            { text:'Highway to hell', correct:true }
         ]
   },
   {
-  song: new Audio('songs/rock/ritornello.treat.you.better.mp3'),
+  song: new Audio('songs/rock/prima.strofa.we.will.rock.you.mp3'),
   answers: [
-            { text:"He can't", correct:false },
-            { text:'Treat you better', correct:true },
-            { text:'Stiches', correct:false },
-            { text:'Gentlemen', correct:false }
+            { text:"Rock you", correct:false },
+            { text:'We will rock you', correct:true },
+            { text:'Back in black', correct:false },
+            { text:'W.w.r.y.', correct:false }
         ]
   },
   {
@@ -897,6 +961,87 @@ function shuffle(array) {
         {text:"Sotto il sole", correct:false},
         {text:"Il mare", correct:false},
         {text:"Karaoke", correct:false}
+      ]
+    },
+    {
+      song: new Audio('songs/italian/ritornello.scatola.nera.mp3'),
+      answers: [
+        {text:"Patatrac", correct:false},
+        {text:"Scatola nera", correct:true},
+        {text:"Defuera", correct:false},
+        {text:"Marylean", correct:false}
+      ]
+    },
+    {
+      song: new Audio('songs/italian/seconda.strofa.defuera.mp3'),
+      answers: [
+        {text:"Marylean", correct:false},
+        {text:"Patatrac", correct:false},
+        {text:"Scatola nera", correct:false},
+        {text:"Defuera", correct:true}
+      ]
+    },
+    {
+      song: new Audio('songs/italian/seconda.strofa.marylean.mp3'),
+      answers: [
+        {text:"Defuera", correct:false},
+        {text:"Scatola nera", correct:false},
+        {text:"Marylean", correct:true},
+        {text:"Patatrac", correct:false}
+      ]
+    },
+    {
+      song: new Audio('songs/italian/seconda.strofa.patatrac.rmx-[AudioTrimmer.com].mp3'),
+      answers: [
+        {text:"Marylean", correct:false},
+        {text:"Defuera", correct:false},
+        {text:"Patatrac", correct:true},
+        {text:"Scatola nera", correct:false}
+      ]
+    },
+    {
+      song: new Audio('songs/italian/ALFA - SUL PI BELLO Prod Yanomi-[AudioTrimmer.com].mp3'),
+      answers: [
+        {text:"Sul Più Bello", correct:true},
+        {text:"c'est la vie", correct:false},
+        {text:"evergreen", correct:false},
+        {text:"film", correct:false}
+      ]
+    },
+    {
+      song: new Audio('songs/italian/MEDITERRANEA - IRAMA OFFICIAL VIDEO-[AudioTrimmer.com].mp3'),
+      answers: [
+        {text:"Sul Più Bello", correct:false},
+        {text:"Mediterranea", correct:true},
+        {text:"Karaoke", correct:false},
+        {text:"Festa", correct:false}
+      ]
+    },
+    {
+      song: new Audio('songs/italian/PSICOLOGI  FESTA -[AudioTrimmer.com].mp3'),
+      answers: [
+        {text:"Futuro", correct:false},
+        {text:"Voglia di ballare", correct:false},
+        {text:"Sto bene", correct:false},
+        {text:"Festa", correct:true}
+      ]
+    },
+    {
+      song: new Audio('songs/italian/PSICOLOGIFUTURO-[AudioTrimmer.com].mp3'),
+      answers: [
+        {text:"Futuro", correct:true},
+        {text:"Sto bene", correct:false},
+        {text:"Mediterranea", correct:false},
+        {text:"Festa", correct:false}
+      ]
+    },
+    {
+      song: new Audio('songs/italian/Random - Sono un bravo ragazzo un po fuori di testa Official Video-[AudioTrimmer.com].mp3'),
+      answers: [
+        {text:"Sono un bravo ragazzo un pò fuori di testa", correct:true},
+        {text:"Bravo ragazzo", correct:false},
+        {text:"Festa", correct:false},
+        {text:"Un pò furoi di testa", correct:false}
       ]
     }
   ]  
