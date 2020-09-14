@@ -60,6 +60,7 @@ body {
     padding: 25px 25px;
     border-radius: 10px;
     font-family: 'Russo One', sans-serif;
+    outline: none;
   }
   
   .btn:hover {
