@@ -17,14 +17,14 @@
         <div class="homeBox" id="homeBox">
             <h1>Choose your genre :</h1>
             <div class ="btn-grid">
-                <button id="popBtn" class="btn">Pop</button>
-                <button id="rapBtn"class="btn">Hip-Hop / Rap</button>
-                <button id="italianBtn" class="btn">Italian</button>
-                <button id="rockBtn" class="btn">Rock</button>
+                <button id="popBtn" class="btn hoverbtn">Pop</button>
+                <button id="rapBtn"class="btn hoverbtn">Hip-Hop / Rap</button>
+                <button id="italianBtn" class="btn hoverbtn">Italian</button>
+                <button id="rockBtn" class="btn hoverbtn">Rock</button>
             </div>
             <div>
                 <h2>Select Your Difficulty</h2>
-                <select class="btn" id='difficulty' onchange="selectedDifficultyChange()">
+                <select class="btn hoverbtn" id='difficulty' onchange="selectedDifficultyChange()">
                     <option value="15">Easy</option>
                     <option value="13">Medium</option>
                     <option value="10">Difficult</option>
@@ -36,23 +36,23 @@
         <div id="question-container" class="hide homeBox">
             <h1 class="poppins">Guess The Name Of The Tune</h1>
             <div id="answer-buttons" class="btn-grid">
-                <button id='answer1' class="btn">Answer 1</button>
-                <button id='answer2' class="btn">Answer 2</button>
-                <button id='answer3' class="btn">Answer 3</button>
-                <button id='answer4' class="btn">Answer 4</button>
+                <button id='answer1' class="btn hoverbtn">Answer 1</button>
+                <button id='answer2' class="btn hoverbtn">Answer 2</button>
+                <button id='answer3' class="btn hoverbtn">Answer 3</button>
+                <button id='answer4' class="btn hoverbtn">Answer 4</button>
             </div>
 
             <div class="poppins">
                 Score : <p class="inline" id='score'>0</p> 
                 Time : <p class="inline" id='timer'>0</p>
             </div>
-                <button id ='nextBtn'class='btn next-btn'>Next</button>
+                <button id ='nextBtn'class='btn next-btn hoverbtn'>Next</button>
         </div>
 
         <div id='resetBox' class="hide homeBox">
             <p>Congratulations !</p>
             <div >Your score is : <h2 class="inline" id="totalScore">0</h2>/<h2 class="inline" id="numberQuestions">/20</h2></div>
-            <a href="index.html"><button class="btn">Restart</button></a>
+            <a href="index.html"><button class="btn hoverbtn">Restart</button></a>
         </div>
     </div>
 

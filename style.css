@@ -63,7 +63,7 @@ body {
     outline: none;
   }
   
-  .btn:hover {
+  .btn.hoverbtn:hover {
     background-color: rgb(60, 164, 233);
     color: white;
   }

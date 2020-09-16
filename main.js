@@ -25,10 +25,8 @@ let scorevalue = 0
 let numberQuestion = 0
 var selectedDifficulty = document.getElementById('difficulty')
 var difficulty = selectedDifficulty.options[selectedDifficulty.selectedIndex].value
-var correctAnswer
 var seconds = difficulty
 var clickedCorrectAnswer
-var clickedWrongAnswer = false
 var currentGenre 
 var countdown
 
@@ -70,15 +68,14 @@ function nextBtn(){
     seconds++
     timer()
     if (clickedCorrectAnswer){
-      clearStatusClass(clickedCorrect)
+      clearStatusClassBtn(clickedCorrect)
     }
     else if(clickedWr) {
-      clearStatusClass(clickedWrongCorrect)
-      clearStatusClass(clickedWrong)
+      clearStatusClassBtn(clickedWrongCorrect)
+      clearStatusClassBtn(clickedWrong)
     }
     pauseAudio(currentGenre[currentQuestionIndex].song)
     clicked = false
-    clickedWrongAnswer = false
     currentQuestionIndex++
     nextQuestion(currentGenre)
 }
@@ -86,27 +83,23 @@ function nextBtn(){
 function clickQuestion(answerNumber,genre,answerIndex){
   answerNumber.addEventListener('click',() => {
     if(genre[currentQuestionIndex].answers[answerIndex].correct){
-      //document.body.classList.add('correct')
-      answerNumber.classList.add('correct')
+      correctAnswer(answerNumber)
       if (!clicked){
         clickedCorrect = answerNumber
         scorevalue++
         score.innerText = scorevalue
         clicked = true
         clickedCorrectAnswer = true
-        //clearInterval(countdown)
+
       }
     }
-    else if(!clickedWrongAnswer){
+    else if(!clicked){
         getCorrectAnswer()
-        answerNumber.classList.add('wrong')
-        //document.body.classList.add('wrong')
+        wrongAnswer(answerNumber)
         clicked = true
         clickedWr = true
         clickedCorrectAnswer = false
-        clickedWrongAnswer = true
         clickedWrong = answerNumber
-        //clearInterval(countdown)
     }
   })
 }
@@ -114,7 +107,6 @@ function clickQuestion(answerNumber,genre,answerIndex){
 function nextQuestion(genre){
   numberQuestion++
   endGame()
-  //clearStatusClass(document.body)
   if (numberQuestion <= selectedNumeberQuestions){
     showQuestion(genre[currentQuestionIndex])
   }
@@ -162,9 +154,10 @@ function pauseAudio(audio){
   audio.pause()
 }
 
-function clearStatusClass(element) {
+function clearStatusClassBtn(element) {
   element.classList.remove('correct')
   element.classList.remove('wrong')
+  element.classList.add('hoverbtn')
 }
 
 function shuffle(array) {
@@ -173,28 +166,33 @@ function shuffle(array) {
 
 function getCorrectAnswer(){
     if(currentGenre[currentQuestionIndex].answers[0].correct){
-      answer1.classList.add('correct')
+      correctAnswer(answer1)
       clickedWrongCorrect = answer1
     }
     else if(currentGenre[currentQuestionIndex].answers[1].correct){
-      answer2.classList.add('correct')
+      correctAnswer(answer2)
       clickedWrongCorrect = answer2
     }
     else if(currentGenre[currentQuestionIndex].answers[2].correct){
-      answer3.classList.add('correct')
+      correctAnswer(answer3)
       clickedWrongCorrect = answer3
     }
     else if(currentGenre[currentQuestionIndex].answers[3].correct){
-      answer4.classList.add('correct')
+      correctAnswer(answer4)
       clickedWrongCorrect = answer4
     }
 }
 
-function clearCorrectAnswer(answerNmbr){
-  if(answerNmbr.classList = 'correct'){
-    answerNmbr.classList.remove('correct')
-  }
+function correctAnswer(answer){
+  answer.classList.add('correct')
+  answer.classList.remove('hoverbtn')
 }
+
+function wrongAnswer(answer){
+  answer.classList.add('wrong')
+  answer.classList.remove('hoverbtn')
+}
+
 
   const questionsPop =  [{
     song: new Audio('songs/pop/ritornello.paradise.mp3'),
