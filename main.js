@@ -86,7 +86,7 @@ function nextBtn(){
 function clickQuestion(answerNumber,genre,answerIndex){
   answerNumber.addEventListener('click',() => {
     if(genre[currentQuestionIndex].answers[answerIndex].correct){
-      document.body.classList.add('correct')
+      //document.body.classList.add('correct')
       answerNumber.classList.add('correct')
       if (!clicked){
         clickedCorrect = answerNumber
@@ -100,7 +100,7 @@ function clickQuestion(answerNumber,genre,answerIndex){
     else if(!clickedWrongAnswer){
         getCorrectAnswer()
         answerNumber.classList.add('wrong')
-        document.body.classList.add('wrong')
+        //document.body.classList.add('wrong')
         clicked = true
         clickedWr = true
         clickedCorrectAnswer = false
@@ -114,7 +114,7 @@ function clickQuestion(answerNumber,genre,answerIndex){
 function nextQuestion(genre){
   numberQuestion++
   endGame()
-  clearStatusClass(document.body)
+  //clearStatusClass(document.body)
   if (numberQuestion <= selectedNumeberQuestions){
     showQuestion(genre[currentQuestionIndex])
   }

@@ -77,13 +77,13 @@ body {
     --hue: var(--hue-neutral);
   }
 
-  body.correct {
+  /*body.correct {
     --hue: var(--hue-correct);
   }
 
   body.wrong {
     --hue: var(--hue-wrong);
-  }
+  }*/
 
   .btn.correct{
     --hue: var(--hue-correct);
