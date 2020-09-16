@@ -14,6 +14,7 @@ const score = document.getElementById('score')
 const nextButton = document.getElementById('nextBtn')
 const totalScore = document.getElementById('totalScore')
 const numberQuestions = document.getElementById('numberQuestions')
+const currentSong = document.getElementById('currentSong')
 
 let clickedWrong
 let clickedCorrect 
@@ -23,6 +24,7 @@ let clicked = false
 let currentQuestionIndex = 0
 let scorevalue = 0
 let numberQuestion = 0
+let songNumber = 1
 var selectedDifficulty = document.getElementById('difficulty')
 var difficulty = selectedDifficulty.options[selectedDifficulty.selectedIndex].value
 var seconds = difficulty
@@ -117,6 +119,8 @@ function showQuestion(question){
     answer2.innerText = question.answers[1].text
     answer3.innerText = question.answers[2].text
     answer4.innerText = question.answers[3].text
+    currentSong.innerText = songNumber
+    songNumber++
     question.song.play()
 }
 

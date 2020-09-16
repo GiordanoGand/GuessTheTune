@@ -32,21 +32,24 @@
                 </select>
             </div>
         </div>
-    
         <div id="question-container" class="hide homeBox">
-            <h1 class="poppins">Guess The Name Of The Tune</h1>
+            <h1>Guess The Name Of The Tune</h1>
             <div id="answer-buttons" class="btn-grid">
                 <button id='answer1' class="btn hoverbtn">Answer 1</button>
                 <button id='answer2' class="btn hoverbtn">Answer 2</button>
                 <button id='answer3' class="btn hoverbtn">Answer 3</button>
                 <button id='answer4' class="btn hoverbtn">Answer 4</button>
             </div>
-
-            <div class="poppins">
-                Score : <p class="inline" id='score'>0</p> 
-                Time : <p class="inline" id='timer'>0</p>
-            </div>
-                <button id ='nextBtn'class='btn next-btn hoverbtn'>Next</button>
+            <div class="poppins ">
+                <div>
+                    Score : <p class="inline" id='score'>0</p> 
+                    Time : <p class="inline" id='timer'>0</p>s
+                </div>
+                <div>
+                    Song :  <p id="currentSong" class="inline">1</p> / <p class="inline">10</p>
+                </div>   
+            </div> 
+            <button id ='nextBtn'class='btn next-btn hoverbtn'>Next</button>
         </div>
 
         <div id='resetBox' class="hide homeBox">

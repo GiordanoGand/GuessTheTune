@@ -27,7 +27,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
  .homeBox {
@@ -35,7 +34,7 @@ body {
      max-width: 80%;
      border: 4px solid black;
      background-color:rgb(100, 15, 100);
-     margin-top: 100px;
+     margin-top: 80px;
      margin-bottom: 20px;
      padding: 10px;
      border-radius: 5px;
@@ -44,7 +43,7 @@ body {
 
  .btn-grid{
   margin-top: 30px ;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   display: grid;
   grid-template-columns: auto auto;
   gap: 10px;
@@ -77,14 +76,6 @@ body {
     --hue: var(--hue-neutral);
   }
 
-  /*body.correct {
-    --hue: var(--hue-correct);
-  }
-
-  body.wrong {
-    --hue: var(--hue-wrong);
-  }*/
-
   .btn.correct{
     --hue: var(--hue-correct);
   }
@@ -92,7 +83,6 @@ body {
   .btn.wrong{
     --hue: var(--hue-wrong);
   }
-
 
   .inline{
     display: inline-block;
@@ -102,7 +92,7 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: 35px;
   }
+
   .hide {
     display: none;
   }
-
